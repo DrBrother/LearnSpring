@@ -1,29 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans  xmlns="http://www.springframework.org/schema/beans"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xmlns:context="http://www.springframework.org/schema/context"
-        xsi:schemaLocation="http://www.springframework.org/schema/beans
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context
-        http://www.springframework.org/schema/context/spring-context.xsd">
+        http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/util https://www.springframework.org/schema/util/spring-util.xsd">
 
-    <bean id="musicBean"
+    <bean id="classicalMusicBean"
           class="springApplication.ClassicalMusic">
     </bean>
 
-<!--    Через setter -->
+    <bean id="rockMusic"
+          class="springApplication.RockMusic">
+    </bean>
+
+    <bean id="rapMusic"
+          class="springApplication.RapMusic">
+    </bean>
+
+
+    <!--    Через setter -->
     <bean id="musicPlayer"
           class="springApplication.MusicPlayer">
-        <property name="music" ref="musicBean"/>
-<!--        Устанавливаем параметры полям -->
-        <property name="name" value="Название"/>
+        <property name="musicList">
+            <list>
+                <ref bean="classicalMusicBean"/>
+                <ref bean="rockMusic"/>
+                <ref bean="rapMusic"/>
+            </list>
+        </property>
+        <property name="name" value="Name"/>
         <property name="volume" value="10"/>
     </bean>
 
-<!--    Через конструктор -->
-<!--    <bean id="musicPlayer"-->
-<!--          class="springApplication.MusicPlayer">-->
-<!--        <constructor-arg ref="musicBean"/>-->
-<!--    </bean>-->
 
 </beans>
