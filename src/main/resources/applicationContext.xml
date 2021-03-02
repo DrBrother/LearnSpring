@@ -11,9 +11,19 @@
           class="springApplication.ClassicalMusic">
     </bean>
 
+<!--    Через setter -->
     <bean id="musicPlayer"
           class="springApplication.MusicPlayer">
         <property name="music" ref="musicBean"/>
+<!--        Устанавливаем параметры полям -->
+        <property name="name" value="Название"/>
+        <property name="volume" value="10"/>
     </bean>
+
+<!--    Через конструктор -->
+<!--    <bean id="musicPlayer"-->
+<!--          class="springApplication.MusicPlayer">-->
+<!--        <constructor-arg ref="musicBean"/>-->
+<!--    </bean>-->
 
 </beans>
