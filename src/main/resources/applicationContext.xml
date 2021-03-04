@@ -12,20 +12,23 @@
           class="springApplication.ClassicalMusic">
     </bean>
 
-    <bean id="rockMusic"
+    <bean id="rockMusicBean"
           class="springApplication.RockMusic">
     </bean>
 
-    <bean id="rapMusic"
-          class="springApplication.RapMusic">
+    <bean id="rapMusicBean"
+          class="springApplication.RapMusic"
+          factory-method="getRapMusic">
     </bean>
 
 
     <!--    Через setter -->
     <bean id="musicPlayer"
           class="springApplication.MusicPlayer"
-          scope="prototype">
-        <property name="music" ref="rapMusic"/>
+          scope="prototype"
+          init-method="initMethod"
+          destroy-method="destroyMethod">
+        <property name="music" ref="rapMusicBean"/>
         <property name="name" value="Name"/>
         <property name="volume" value="10"/>
     </bean>
