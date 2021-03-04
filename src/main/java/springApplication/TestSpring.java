@@ -9,12 +9,16 @@ public class TestSpring {
         );
 
         MusicPlayer musicPlayer = context.getBean("musicPlayer", MusicPlayer.class);
-        musicPlayer.playMusic();
+        MusicPlayer musicPlayer1 = context.getBean("musicPlayer", MusicPlayer.class);
         System.out.println("Громкость "+ musicPlayer.getVolume());
+        System.out.println("Громкость "+ musicPlayer1.getVolume());
+
+        musicPlayer.setVolume(30);
+      //  musicPlayer.playMusic();
+        System.out.println("Громкость "+ musicPlayer.getVolume());
+        System.out.println("Громкость "+ musicPlayer1.getVolume());
+
         context.close();
 
     }
-
-
-
 }

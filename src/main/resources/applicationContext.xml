@@ -23,14 +23,9 @@
 
     <!--    Через setter -->
     <bean id="musicPlayer"
-          class="springApplication.MusicPlayer">
-        <property name="musicList">
-            <list>
-                <ref bean="classicalMusicBean"/>
-                <ref bean="rockMusic"/>
-                <ref bean="rapMusic"/>
-            </list>
-        </property>
+          class="springApplication.MusicPlayer"
+          scope="prototype">
+        <property name="music" ref="rapMusic"/>
         <property name="name" value="Name"/>
         <property name="volume" value="10"/>
     </bean>
