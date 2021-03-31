@@ -1,54 +1,25 @@
 package springApplication;
 
-import java.util.ArrayList;
-import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
+import springApplication.music.musicAPI.IMusic;
 
+@Component
 public class MusicPlayer {
-    private Music music;
 
-    private String name;
-    private int volume;
+    private IMusic IMusic1;
+    private IMusic IMusic2;
 
-    public String getName() {
-        return name;
+    @Autowired
+    public MusicPlayer(@Qualifier("rapBean") IMusic IMusic1, @Qualifier("rockBean") IMusic IMusic2) {
+        this.IMusic1 = IMusic1;
+        this.IMusic2 = IMusic2;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getVolume() {
-        return volume;
-    }
-
-    public void setVolume(int volume) {
-        this.volume = volume;
-    }
-
-    // инверсия зависимостей
-    public MusicPlayer(Music music) {
-        this.music = music;
-    }
-
-    public MusicPlayer() {}
-
-    public void setMusic(Music music) {
-        this.music = music;
-    }
-
-    public Music getMusic() {
-        return music;
-    }
-    public void playMusic(){
-
-            System.out.println("Playing: " + music.getSong());
+    public String playMusic(){
+           return "Playing: " + IMusic1.getSong() + ", " + IMusic2.getSong();
 
     }
 
-    private void initMethod(){
-        System.out.println("initMethod");
-    }
-    private void destroyMethod(){
-        System.out.println("destroyMethod");
-    }
 }
